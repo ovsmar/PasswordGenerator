@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container">
+        <form>
+            <div class="container">
+                Longueur du mot de passe:
+                <input type="number" id="qnt" min="1" max="100" value="12"><br>
+                <input type="checkbox" id="letters" checked="true">Letters<br>
+                <input type="checkbox" id="nombres" checked="true">Nombres<br>
+                <input type="checkbox" id="speciaux" checked="true">Caractères spéciaux<br>
+                <input type="button" name="submit" id="submit" value="Générer" onclick="Submit();"><br>
+                <textarea id="password"></textarea><br>
+                <button id="copyButton">Copier</button><br>
+            </div>
+        </form>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
