@@ -26,7 +26,7 @@ function CheckBoxOfCharacter(letters, nombres, speciaux) {
     character = character + "1234567890";
   }
   if (speciaux === true) {
-    character = character + "!@#$%^&*()";
+    character = character + "!?@#$%^&*()[]-+^*=?^_`{|}~:";
   }
   character = character.charAt(Math.floor(Math.random() * character.length));
   return character;
