@@ -41,3 +41,19 @@ function copyMDP(e) {
   document.execCommand("copy");
 }
 copyButton.addEventListener("click", copyMDP);
+
+// random bg color event click
+const body = document.querySelector("body");
+const btn = document.querySelector("#submit");
+const btn2 = document.querySelector("#copyButton");
+
+[btn, btn2].forEach((element) => {
+  element.addEventListener("click", () => {
+    let random1 = Math.floor(Math.random() * 255);
+    let random2 = Math.floor(Math.random() * 255);
+    let random3 = Math.floor(Math.random() * 255);
+
+    let colorValue = "rgb(" + random1 + "," + random2 + "," + random3 + ")";
+    body.style.background = colorValue;
+  });
+});
