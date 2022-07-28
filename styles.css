@@ -1,5 +1,6 @@
 .container {
-  margin: 15% auto;
+  /* margin: 15% auto; */
+  transform: translate(0%, 35%);
   text-align: center;
 }
 
@@ -29,6 +30,7 @@ body {
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
+  backdrop-filter: blur(5px);
 }
 
 #white {
