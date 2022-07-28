@@ -13,15 +13,17 @@
     <div id="container">
         <form>
             <div class="container">
-                Longueur du mot de passe:
+                <strong id="white">Longueur du mot de passe:</strong><br>
                 <input type="range" id="qnt" min="1" max="100" value="12"
-                    oninput="this.nextElementSibling.value = this.value"><output>12</output><br>
-                <input type="checkbox" id="letters" checked="true">Letters<br>
-                <input type="checkbox" id="nombres" checked="true">Nombres<br>
-                <input type="checkbox" id="speciaux" checked="true">Caractères spéciaux<br>
-                <input type="button" name="submit" id="submit" value="Générer" onclick="Submit();"><br>
-                <textarea id="password"></textarea><br>
-                <button id="copyButton">Copier</button><br>
+                    oninput="this.nextElementSibling.value = this.value"><output id="red">12</output><br><br>
+                <input type="checkbox" id="letters" checked="true"><strong id="white">Letters</strong><br>
+                <input type="checkbox" id="nombres" checked="true"><strong id="white">Nombres</strong><br>
+                <input type="checkbox" id="speciaux" checked="true"><strong id="white">Caractères
+                    spéciaux</strong><br><br>
+                <input class="btn" type="button" name="submit" id="submit" value="Générer" onclick="Submit();"><br>
+                <br>
+                <textarea class="btn" id="password"></textarea><br><br>
+                <button class="btn" id="copyButton">Copier</button><br>
             </div>
         </form>
     </div>
