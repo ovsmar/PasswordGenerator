@@ -76,3 +76,12 @@ body {
   letter-spacing: 2px;
   padding: 5px 30px;
 }
+
+#score {
+  color: #ffff;
+  font-size: strong;
+}
+
+#emoji {
+  font-size: 30px;
+}
