@@ -7,16 +7,6 @@ function Submit() {
   let speciaux = document.getElementById("speciaux").checked;
   let password = "";
 
-  let a = "💀";
-  let b = "🙂";
-  let c = "😀";
-  let d = "😁";
-  let e = "😈";
-  let f = "👹";
-  let g = "👽";
-  let h = "🤯";
-  let ii = "🤡";
-
   let text = "Score de votre mot de passe :";
 
   if (mdpQNT <= 100 && mdpQNT > 0) {
@@ -33,25 +23,31 @@ function Submit() {
   score = document.getElementById("score");
   score.innerHTML = text;
 
-  if (mdpQNT < 8) {
-    strong.innerHTML = a;
-  } else if (mdpQNT < 15) {
-    strong.innerHTML = b;
-  } else if (mdpQNT < 20) {
-    strong.innerHTML = c;
-  } else if (mdpQNT < 35) {
-    strong.innerHTML = d;
-  } else if (mdpQNT < 50) {
-    strong.innerHTML = e;
-  } else if (mdpQNT < 65) {
-    strong.innerHTML = f;
-  } else if (mdpQNT < 80) {
-    strong.innerHTML = g;
-  } else if (mdpQNT < 90) {
-    strong.innerHTML = h;
-  } else if (mdpQNT < 101) {
-    strong.innerHTML = ii;
-  }
+  fetch("emoji.json")
+    .then((response) => response.json())
+    .then((emoji) => {
+      console.log(emoji);
+
+      if (mdpQNT < 8) {
+        strong.innerHTML = emoji["a"];
+      } else if (mdpQNT < 15) {
+        strong.innerHTML = emoji["b"];
+      } else if (mdpQNT < 20) {
+        strong.innerHTML = emoji["c"];
+      } else if (mdpQNT < 35) {
+        strong.innerHTML = emoji["d"];
+      } else if (mdpQNT < 50) {
+        strong.innerHTML = emoji["e"];
+      } else if (mdpQNT < 65) {
+        strong.innerHTML = emoji["f"];
+      } else if (mdpQNT < 80) {
+        strong.innerHTML = emoji["g"];
+      } else if (mdpQNT < 90) {
+        strong.innerHTML = emoji["h"];
+      } else if (mdpQNT < 101) {
+        strong.innerHTML = emoji["i"];
+      }
+    });
 }
 
 function CheckBoxOfCharacter(letters, nombres, speciaux) {
