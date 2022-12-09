@@ -6,26 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
+    <title>Password generator</title>
 </head>
 
 <body>
     <div id="container">
         <form>
             <div class="container">
-                <strong id="white">Longueur du mot de passe:</strong><br>
-                <input type="range" id="qnt" min="1" max="100" value="12"
-                    oninput="this.nextElementSibling.value = this.value"><output id="red">12</output><br><br>
-                <input type="checkbox" id="letters" checked="true"><strong id="white">Letters</strong><br>
-                <input type="checkbox" id="nombres" checked="true"><strong id="white">Nombres</strong><br>
-                <input type="checkbox" id="speciaux" checked="true"><strong id="white">Caractères
-                    spéciaux</strong><br><br>
-                <input class="btn" type="button" name="submit" id="submit" value="Générer" onclick="Submit();"><br>
+                <strong id="white">Your password length:</strong><br>
+                <input type="range" id="qnt" min="8" max="100" value="8"
+                    oninput="this.nextElementSibling.value = this.value"><output id="red">8</output><br><br>
+
+                <input type="checkbox" id="lowercase" checked="true"><strong id="white">Include lowercase characters?</strong><br>
+                <input type="checkbox" id="uppercase" checked="true"><strong id="white">Include uppercase characters?</strong><br>
+                <input type="checkbox" id="numbers" checked="true"><strong id="white">Include numbers?</strong><br>
+                <input type="checkbox" id="special" checked="true"><strong id="white">Include special characters?</strong><br><br>
+
+                <input class="btn" type="button" name="submit" id="submit" value="Generate" onclick="Submit();"><br><br>
+                <button class="btn" id="copyButton">Copy</button><br>
                 <br>
-                <textarea class="btn" id="password"></textarea><br><br>
+                <textarea class="textarea" id="password"></textarea><br><br>
                 <strong><span id="score"></span></strong><br><br>
                 <strong id="emoji" id="white"></strong><br><br>
-                <button class="btn" id="copyButton">Copier</button><br>
+               
             </div>
         </form>
     </div>

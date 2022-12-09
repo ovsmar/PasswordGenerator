@@ -2,78 +2,88 @@ let copyButton = document.querySelector("#copyButton");
 
 function Submit() {
   let mdpQNT = document.getElementById("qnt").value;
-  let letters = document.getElementById("letters").checked;
-  let nombres = document.getElementById("nombres").checked;
-  let speciaux = document.getElementById("speciaux").checked;
+  let lowercase = document.getElementById("lowercase").checked;
+  let uppercase = document.getElementById("uppercase").checked;
+  let numbers = document.getElementById("numbers").checked;
+  let special = document.getElementById("special").checked;
+  let pass = document.getElementById("password")
   let password = "";
 
-  let text = "Score de votre mot de passe :";
+  let text = "Score of your password:";
 
-  if (mdpQNT <= 100 && mdpQNT > 0) {
-    for (var i = 0; i < mdpQNT; i++) {
-      password = password + CheckBoxOfCharacter(letters, nombres, speciaux);
-      // console.log(password);
+// Check if the password length is valid
+if (mdpQNT > 0 && mdpQNT <= 100) {
+  // Check if at least one character type was selected
+  if (lowercase || uppercase || numbers || special) {
+     // Generate the password
+    for (let i = 0; i < mdpQNT; i++) {
+      password = password + CheckBoxOfCharacter(lowercase, uppercase, numbers,special);
     }
-    document.getElementById("password").innerHTML = password;
+    pass.innerHTML = password;
   } else {
-    document.getElementById("password").innerHTML = "100 caractères maximum!";
+    // Print an error message if no character type was selected
+    pass.innerHTML = "Your password must include at least one character type. Please try again.";
   }
+}
 
   strong = document.getElementById("emoji");
   score = document.getElementById("score");
   score.innerHTML = text;
+  getPassLenght=password.length
 
+  let emojiMapping = {
+    a: getPassLenght < 9,
+    b: getPassLenght < 15,
+    c: getPassLenght < 20,
+    d: getPassLenght < 35,
+    e: getPassLenght < 50,
+    f: getPassLenght < 65,
+    g: getPassLenght < 80,
+    h: getPassLenght < 90,
+    i: getPassLenght < 101,
+  };
+  
   fetch("emoji.json")
     .then((response) => response.json())
     .then((emoji) => {
-      console.log(emoji);
-
-      if (mdpQNT < 8) {
-        strong.innerHTML = emoji["a"];
-      } else if (mdpQNT < 15) {
-        strong.innerHTML = emoji["b"];
-      } else if (mdpQNT < 20) {
-        strong.innerHTML = emoji["c"];
-      } else if (mdpQNT < 35) {
-        strong.innerHTML = emoji["d"];
-      } else if (mdpQNT < 50) {
-        strong.innerHTML = emoji["e"];
-      } else if (mdpQNT < 65) {
-        strong.innerHTML = emoji["f"];
-      } else if (mdpQNT < 80) {
-        strong.innerHTML = emoji["g"];
-      } else if (mdpQNT < 90) {
-        strong.innerHTML = emoji["h"];
-      } else if (mdpQNT < 101) {
-        strong.innerHTML = emoji["i"];
+      
+      let key = Object.keys(emojiMapping).find((key) => emojiMapping[key]);
+      if (key) {
+        strong.innerHTML = emoji[key];
       }
     });
-}
+  }
 
-function CheckBoxOfCharacter(letters, nombres, speciaux) {
+function CheckBoxOfCharacter(lowercase, uppercase, numbers,special) {
   let character = "";
-  if (letters === true) {
-    character =
-      character + "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  }
-  if (nombres === true) {
-    character = character + "1234567890";
-  }
-  if (speciaux === true) {
-    character = character + "!?@#$%^&*()[]-+^*=?^_`{|}~:";
-  }
+  
+  if (lowercase === true) {character = character + "abcdefghijklmnopqrstuvwxyz";}
+  if (uppercase === true) {character = character + "ABCDEFGHIJKLMNOPQRSTUVWXYZ";}
+  if (numbers === true) {character = character + "0123456789";}
+  if (special === true) {character = character + " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";}
 
   character = character.charAt(Math.floor(Math.random() * character.length));
 
-  return character;
+    return character;
 }
 
+//copy password
 function copyMDP(e) {
   e.preventDefault();
-  var password = document.querySelector("#password");
-
-  password.select();
-
+  document.querySelector("#password").select();;
   document.execCommand("copy");
 }
 copyButton.addEventListener("click", copyMDP);
+
+
+//textarea auto-resize
+const tx = document.getElementsByTagName("textarea");
+for (let i = 0; i < tx.length; i++) {
+  tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
+  tx[i].addEventListener("input", OnInput, false);
+}
+
+function OnInput() {
+  this.style.height = 0;
+  this.style.height = (this.scrollHeight) + "px";
+}
